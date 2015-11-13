@@ -38,7 +38,6 @@ rosserial_add_client_target(chatter chatter.axf ALL)
 rosserial_add_client_target(chatter flash)
 rosserial_add_client_target(chatter size)
 rosserial_add_client_target(chatter dump)
-add_dependencies(${PROJECT_NAME}_chatter ${${PROJECT_NAME}_EXPORTED_TARGETS})
 
 # Chatter tutorial for TivaC Connected
 rosserial_configure_client(
@@ -67,7 +66,6 @@ rosserial_configure_client(
 rosserial_add_client_target(rgb_srv rgb_srv.axf ALL)
 rosserial_add_client_target(rgb_srv flash)
 rosserial_add_client_target(rgb_srv size)
-add_dependencies(${PROJECT_NAME}_rgb_srv ${${PROJECT_NAME}_EXPORTED_TARGETS})
 
 # Custom message - Button publisher
 rosserial_configure_client(
@@ -77,7 +75,6 @@ rosserial_configure_client(
 rosserial_add_client_target(buttons buttons.axf ALL)
 rosserial_add_client_target(buttons flash)
 rosserial_add_client_target(buttons size)
-add_dependencies(${PROJECT_NAME}_buttons ${${PROJECT_NAME}_EXPORTED_TARGETS})
 
 # Time and TF example
 rosserial_configure_client(
