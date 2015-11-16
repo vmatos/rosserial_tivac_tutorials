@@ -2,11 +2,11 @@ cmake_minimum_required(VERSION 2.8.3)
 project(rosserial_tivac_tutorials)
 
 find_package(catkin REQUIRED COMPONENTS
+  geomtry_msgs
   message_generation
   rosserial_client
   rosserial_tivac
   std_msgs
-  
 )
 add_message_files(
   FILES Buttons.msg
@@ -84,3 +84,11 @@ rosserial_configure_client(
 rosserial_add_client_target(time_tf time_tf.axf ALL)
 rosserial_add_client_target(time_tf flash)
 rosserial_add_client_target(time_tf size)
+
+# Chatter tutorial
+rosserial_configure_client(
+  DIRECTORY array_test
+  TOOLCHAIN_FILE ${ROSSERIAL_TIVAC_TOOLCHAIN}
+)
+rosserial_add_client_target(array_test array_test.axf ALL)
+rosserial_add_client_target(array_test flash)
