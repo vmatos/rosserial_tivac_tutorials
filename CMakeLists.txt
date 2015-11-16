@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.3)
 project(rosserial_tivac_tutorials)
 
 find_package(catkin REQUIRED COMPONENTS
-  geomtry_msgs
+  geometry_msgs
   message_generation
   rosserial_client
   rosserial_tivac
