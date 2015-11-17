@@ -25,6 +25,7 @@ catkin_package(
 
 rosserial_generate_ros_lib(
   PACKAGE rosserial_tivac
+  SCRIPT make_libraries_tiva
 )
 # Because we need to generate our custom messages before exporting our rosserial ros_lib
 add_dependencies(${PROJECT_NAME}_ros_lib ${${PROJECT_NAME}_EXPORTED_TARGETS})
@@ -85,7 +86,7 @@ rosserial_add_client_target(time_tf time_tf.axf ALL)
 rosserial_add_client_target(time_tf flash)
 rosserial_add_client_target(time_tf size)
 
-# Chatter tutorial
+# Array test tutorial
 rosserial_configure_client(
   DIRECTORY array_test
   TOOLCHAIN_FILE ${ROSSERIAL_TIVAC_TOOLCHAIN}
