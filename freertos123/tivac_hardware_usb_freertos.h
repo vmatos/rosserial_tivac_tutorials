@@ -38,9 +38,9 @@
 #include <stdint.h>
 extern "C"
 {
+  #include "inc/hw_types.h"
   #include "inc/hw_memmap.h"
   #include "inc/hw_ints.h"
-  #include "inc/hw_types.h"
   #include "driverlib/sysctl.h"
   #include "driverlib/gpio.h"
   #include "driverlib/rom.h"
@@ -60,7 +60,6 @@ extern "C"
   #include "FreeRTOS.h"
   #include "task.h"
 }
-
 
 #ifdef TARGET_IS_TM4C123_RA1
 #define LED1        GPIO_PIN_3  // Green LED

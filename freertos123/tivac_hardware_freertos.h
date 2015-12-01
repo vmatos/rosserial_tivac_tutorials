@@ -74,36 +74,8 @@ extern "C"
 #define ROSSERIAL_BAUDRATE 57600
 #endif
 
-static tRingBufObject rxBuffer;
-static tRingBufObject txBuffer;
-
-// UART interrupt handler
-// For each received byte, pushes it into the buffer.
-// For each transmitted byte, read the next available from the buffer.
-static void UARTIntHandler()
-{
-  uint32_t ui32Status;
-  // Get the interrrupt status.
-  ui32Status = MAP_UARTIntStatus(UART0_BASE, true);
-  // Clear the asserted interrupts.
-  MAP_UARTIntClear(UART0_BASE, ui32Status);
-
-  // Since we are using no RX, or TX FIFO, only one char at a time for each interrupt call
-  // RX the next character from the UART and put it on RingBuffer.
-  // We should verify if buffer is not full. Let's assume not, for faster interrupt routine.
-  if (ui32Status & UART_INT_RX)
-    RingBufWriteOne(&rxBuffer, MAP_UARTCharGetNonBlocking(UART0_BASE));
-
-  // TX the next available char on the buffer
-  if (ui32Status & UART_INT_TX)
-    if (!RingBufEmpty(&txBuffer))
-      MAP_UARTCharPutNonBlocking(UART0_BASE, RingBufReadOne(&txBuffer));
-
-#ifdef LED_COMM
-  // Blink the LED to show a character transfer is occuring.
-  MAP_GPIOPinWrite(LED_PORT, LED2, MAP_GPIOPinRead(LED_PORT, LED2)^LED2);
-#endif
-}
+extern tRingBufObject rxBuffer;
+extern tRingBufObject txBuffer;
 
 class TivaCHardware
 {
@@ -142,7 +114,7 @@ class TivaCHardware
       RingBufInit(&txBuffer, this->ui8txBufferData, TX_BUFFER_SIZE);
 
       // Enable RX and TX interrupt
-      UARTIntRegister(UART0_BASE, UARTIntHandler);
+      UARTIntRegister(UART0_BASE, TivaCHardware::UARTIntHandler);
       MAP_IntEnable(INT_UART0);
       MAP_UARTTxIntModeSet(UART0_BASE, UART_TXINT_MODE_EOT);
       MAP_UARTIntEnable(UART0_BASE, UART_INT_RX | UART_INT_TX);
@@ -178,6 +150,34 @@ class TivaCHardware
     uint8_t ui8rxBufferData[RX_BUFFER_SIZE];
     uint8_t ui8txBufferData[TX_BUFFER_SIZE];
 
+    // UART interrupt handler
+    // For each received byte, pushes it into the buffer.
+    // For each transmitted byte, read the next available from the buffer.
+    static void UARTIntHandler()
+    {
+      uint32_t ui32Status;
+      // Get the interrrupt status.
+      ui32Status = MAP_UARTIntStatus(UART0_BASE, true);
+      // Clear the asserted interrupts.
+      MAP_UARTIntClear(UART0_BASE, ui32Status);
+
+      // Since we are using no RX, or TX FIFO, only one char at a time for each interrupt call
+      // RX the next character from the UART and put it on RingBuffer.
+      // We should verify if buffer is not full. Let's assume not, for faster interrupt routine.
+      if (ui32Status & UART_INT_RX)
+        RingBufWriteOne(&rxBuffer, MAP_UARTCharGetNonBlocking(UART0_BASE));
+
+      // TX the next available char on the buffer
+      if (ui32Status & UART_INT_TX)
+        if (!RingBufEmpty(&txBuffer))
+          MAP_UARTCharPutNonBlocking(UART0_BASE, RingBufReadOne(&txBuffer));
+
+    #ifdef LED_COMM
+      // Blink the LED to show a character transfer is occuring.
+      MAP_GPIOPinWrite(LED_PORT, LED2, MAP_GPIOPinRead(LED_PORT, LED2)^LED2);
+    #endif
+    }
+
     // System frequency
     uint32_t ui32SysClkFreq;
     uint32_t getSysClkFreq(void)
@@ -185,4 +185,4 @@ class TivaCHardware
       return this->ui32SysClkFreq;
     }
 };
-#endif  // ROS_LIB_TIVAC_HARDWARE_H
+#endif  // ROS_LIB_TIVAC_HARDWARE_FREERTOS_H
