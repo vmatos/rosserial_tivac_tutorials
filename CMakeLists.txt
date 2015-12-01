@@ -93,3 +93,13 @@ rosserial_configure_client(
 )
 rosserial_add_client_target(array_test array_test.axf ALL)
 rosserial_add_client_target(array_test flash)
+
+# freeRTOS for tm4c123gxl
+rosserial_configure_client(
+  DIRECTORY freertos123
+  TOOLCHAIN_FILE ${ROSSERIAL_TIVAC_TOOLCHAIN}
+)
+rosserial_add_client_target(freertos123 freertos123.axf ALL)
+rosserial_add_client_target(freertos123 flash)
+rosserial_add_client_target(freertos123 size)
+rosserial_add_client_target(freertos123 dump)

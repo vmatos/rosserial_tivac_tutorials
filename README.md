@@ -32,3 +32,11 @@ Provides a service on topic `/led` of message `rosserial_tivac_tutorials/ColorRG
 Time and TF demo for the TM4C123GXL Launchpad.
 Enumerates CDC device class on the device USB port to communicate with rosserial.
 Publishes on topic `/tf` a static transform, timestamped with the current time.
+
+### FreeRTOS on TM4C123GXL
+Demo FreeRTOS application using `rosserial_tivac`.
+This demo creates 3 tasks.
+
+1. spin task - handles ros::spinOnce() periodically at 100ms.
+2. subscribe task - reads from the received message queue and processes data. Sends length of string to processed data queue.
+3. publish task - publishes data from processed data queue.

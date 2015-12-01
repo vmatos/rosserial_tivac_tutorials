@@ -81,6 +81,6 @@ int main(void)
     nh.spinOnce();
 
     // Delay for a bit.
-    delay(1000);
+    nh.getHardware()->delay(1000);
   }
 }
