@@ -137,6 +137,7 @@ class TivaCHardware
     {
       // Trigger sending buffer, if not already sending
       if (RingBufEmpty(&txBuffer))
+      {
         RingBufWrite(&txBuffer, data, length);
         MAP_UARTCharPutNonBlocking(UART0_BASE, RingBufReadOne(&txBuffer));
       }
