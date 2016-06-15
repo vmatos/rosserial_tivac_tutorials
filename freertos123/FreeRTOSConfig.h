@@ -87,7 +87,7 @@
 #define configUSE_NEWLIB_REENTRANT          1
 #define configUSE_MALLOC_LOCK_UNLOCK        1
 
-#define configMAX_PRIORITIES                ( ( unsigned portBASE_TYPE ) 16 )
+#define configMAX_PRIORITIES                ( 16 )
 #define configMAX_CO_ROUTINE_PRIORITIES     ( 2 )
 #define configQUEUE_REGISTRY_SIZE           10
 

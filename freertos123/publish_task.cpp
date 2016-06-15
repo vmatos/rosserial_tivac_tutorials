@@ -56,7 +56,7 @@ uint32_t publishInitTask(ros::NodeHandle *nh)
   nh_->advertise(count_pub);
 
   // Init spin task
-  if (xTaskCreate(publishTask, (signed portCHAR *)"publish", 50, NULL, tskIDLE_PRIORITY + tskPUBLISH_PRIORITY, NULL) != pdTRUE)
+  if (xTaskCreate(publishTask, (const portCHAR *)"publish", 50, NULL, tskIDLE_PRIORITY + tskPUBLISH_PRIORITY, NULL) != pdTRUE)
   {
     return 1;
   }

@@ -49,7 +49,7 @@ uint32_t spinInitTask(ros::NodeHandle *nh)
   nh_ = nh;
 
   // Init spin task
-  if (xTaskCreate(spinTask, (signed portCHAR *)"spin", 100, NULL, tskIDLE_PRIORITY + tskSPIN_PRIORITY, NULL) != pdTRUE)
+  if (xTaskCreate(spinTask, (const portCHAR *)"spin", 100, NULL, tskIDLE_PRIORITY + tskSPIN_PRIORITY, NULL) != pdTRUE)
   {
     return 1;
   }

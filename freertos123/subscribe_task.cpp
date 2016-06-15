@@ -71,7 +71,7 @@ uint32_t subscribeInitTask(ros::NodeHandle *nh)
   g_pStrLenQueue = xQueueCreate(STR_QUEUE_SIZE, sizeof(uint32_t));
 
   // Init spin task
-  if (xTaskCreate(subscribeTask, (signed portCHAR *)"subscrive", 100, NULL, tskIDLE_PRIORITY + tskSUBSCRIBE_PRIORITY, NULL) != pdTRUE)
+  if (xTaskCreate(subscribeTask, (const portCHAR *)"subscrive", 100, NULL, tskIDLE_PRIORITY + tskSUBSCRIBE_PRIORITY, NULL) != pdTRUE)
   {
     return 1;
   }
