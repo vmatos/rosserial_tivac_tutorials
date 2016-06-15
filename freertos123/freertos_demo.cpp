@@ -37,7 +37,6 @@ void __error__(char *pcFilename, uint32_t ui32Line)
 
 extern "C" 
 {
-void vAssertedCalled(char *pcFilename, uint32_t ui32Line);
 // This hook is called by FreeRTOS when an stack overflow error is detected.
 void vApplicationStackOverflowHook(xTaskHandle *pxTask, char *pcTaskName)
 {
