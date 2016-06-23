@@ -5,6 +5,7 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   message_generation
   rosserial_client
+  rosserial_msgs
   rosserial_tivac
   std_msgs
 )
