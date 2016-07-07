@@ -77,6 +77,15 @@ rosserial_add_client_target(buttons buttons.axf ALL)
 rosserial_add_client_target(buttons flash)
 rosserial_add_client_target(buttons size)
 
+# How to get a parameter from ROS master
+rosserial_configure_client(
+  DIRECTORY getparam
+  TOOLCHAIN_FILE ${ROSSERIAL_TIVAC_TOOLCHAIN}
+)
+rosserial_add_client_target(getparam getparam.axf ALL)
+rosserial_add_client_target(getparam flash)
+rosserial_add_client_target(getparam size)
+
 # Time and TF example
 rosserial_configure_client(
   DIRECTORY time_tf

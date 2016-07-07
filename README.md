@@ -18,6 +18,13 @@ User button state publisher for the TM4C123GXL Launchpad.
 Enumerates CDC device class on the device USB port to communicate with rosserial.
 Publishes on topic `/button_state` a custom message `rosserial_tivac_tutorials/Buttons`.
 
+### getparam
+For the TM4C123GXL Launchpad.
+It uses the UART on the debug USB port to communicate with rosserial.
+Gets private parameter 'my_param' on the rosserial node.
+Publishes on topic `/param` a float, with the default value is -1.0 if parameter is not found.
+
+
 ### rgb_led
 Subscriber demo for the TM4C123GXL Launchpad.
 Enumerates CDC device class on the device USB port to communicate with rosserial.
