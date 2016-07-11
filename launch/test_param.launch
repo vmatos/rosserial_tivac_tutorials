@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+  <rosparam param="/serial_node/int">1</rosparam>
+  <rosparam param="/serial_node/float">2.0</rosparam>
+  <rosparam param="/serial_node/string">"hello"</rosparam>
+  <rosparam param="/serial_node/array_int">[1, 2, 3]</rosparam>
+  <rosparam param="/serial_node/array_float">[3.0, 2.0, 1.0]</rosparam>
+  <rosparam param="/serial_node/array_string">["hi", " ", "there"]</rosparam>
+  <rosparam param="/serial_node/array_mix">[2, 1.0, "hi"]</rosparam>
+  <node name="serial_node" pkg="rosserial_server" type="serial_node" output="screen">
+    <param name="baud" value="115200"/>
+  </node>
+</launch>
