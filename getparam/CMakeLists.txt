@@ -11,8 +11,12 @@ add_definitions(-DROSSERIAL_BAUDRATE=115200)
 add_definitions(-DTX_BUFFER_SIZE=512)
 add_definitions(-DRX_BUFFER_SIZE=512)
 
+add_definitions(-Drestrict=__restrict__)
+
 # Generate target for TivaC
 generate_tivac_firmware(
-  SRCS getparam.cpp
+  SRCS getparam.cpp ${TIVA_WARE_PATH}/utils/ustdlib.c
   BOARD tm4c123gxl
 )
+
+

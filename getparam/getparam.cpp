@@ -14,12 +14,12 @@
 
 #include <stdbool.h>
 #include <stdint.h>
-#include <stdlib.h>
 // TivaC specific includes
 extern "C"
 {
   #include <driverlib/sysctl.h>
   #include <driverlib/gpio.h>
+  #include <utils/ustdlib.h>
 }
 // ROS includes
 #include <ros.h>
@@ -68,7 +68,7 @@ int main(void)
     nh.spinOnce();
     nh.getHardware()->delay(10);
   }
-  sprintf(loginfo_buffer, "[TIVA] Got param int: %d", int_buf);
+  usprintf(loginfo_buffer, "[TIVA] Got param int: %d", int_buf);
   nh.loginfo(loginfo_buffer);
   
   // Get float parameter
@@ -79,7 +79,7 @@ int main(void)
     nh.spinOnce();
     nh.getHardware()->delay(10);
   }
-  sprintf(loginfo_buffer, "[TIVA] Got param float: %f", float_buf);
+  usprintf(loginfo_buffer, "[TIVA] Got param float: %f", float_buf);
   nh.loginfo(loginfo_buffer);
   
   // Get string parameter
@@ -90,7 +90,7 @@ int main(void)
     nh.spinOnce();
     nh.getHardware()->delay(10);
   }
-  sprintf(loginfo_buffer, "[TIVA] Got param string: %s", string_buf_ptr[0]);
+  usprintf(loginfo_buffer, "[TIVA] Got param string: %s", string_buf_ptr[0]);
   nh.loginfo(loginfo_buffer);
   
   // Get int array
@@ -101,7 +101,7 @@ int main(void)
     nh.spinOnce();
     nh.getHardware()->delay(10);
   }
-  sprintf(loginfo_buffer, "[TIVA] Got param array_int: [%d, %d, %d]", int_array_buf[0], int_array_buf[1], int_array_buf[2]);
+  usprintf(loginfo_buffer, "[TIVA] Got param array_int: [%d, %d, %d]", int_array_buf[0], int_array_buf[1], int_array_buf[2]);
   nh.loginfo(loginfo_buffer);
   
   // Get float array
@@ -112,7 +112,7 @@ int main(void)
     nh.spinOnce();
     nh.getHardware()->delay(10);
   }
-  sprintf(loginfo_buffer, "[TIVA] Got param array_float: [%f, %f, %f]", float_array_buf[0], float_array_buf[1], float_array_buf[2]);
+  usprintf(loginfo_buffer, "[TIVA] Got param array_float: [%f, %f, %f]", float_array_buf[0], float_array_buf[1], float_array_buf[2]);
   nh.loginfo(loginfo_buffer);
   
   // Get string array
@@ -123,7 +123,7 @@ int main(void)
     nh.spinOnce();
     nh.getHardware()->delay(10);
   }
-  sprintf(loginfo_buffer, "[TIVA] Got param array_string: [%s, %s, %s]", string_array_buf1, string_array_buf2, string_array_buf3);
+  usprintf(loginfo_buffer, "[TIVA] Got param array_string: [%s, %s, %s]", string_array_buf1, string_array_buf2, string_array_buf3);
   nh.loginfo(loginfo_buffer);
   
   // We just want to make rosserial_server throw a warning.
