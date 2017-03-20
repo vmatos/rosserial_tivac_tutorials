@@ -1,6 +1,14 @@
 # rosserial_tivac_tutorials
 Tutorials and examples for rosserial_tivac package.
 
+## Building procedure:
+
+```
+catkin_make rosserial_tivac_tutorials_generate_messages
+source devel/setup.bash
+catkin_make
+```
+
 ## Tutorials and examples:
 
 ### chatter
